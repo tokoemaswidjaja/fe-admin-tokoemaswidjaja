@@ -309,7 +309,6 @@
                 }
             })      
                 .then(({data})=>{              
-                    console.log(data)   
                     this.allRetur = data         
                     this.loading1 = false               
                 })
@@ -340,7 +339,6 @@
             this.dialog2 = true
         },  
         tambahReturan(){
-            console.log(this.desc)
                 Swal.fire({
                     title: 'Apakah anda yakin akan retur barang?',
                     showDenyButton: true,

@@ -17,7 +17,7 @@
                 <Retur data-app/>
         </v-tab-item>
         <v-tab-item :value="Tambahan">
- 
+                <Tambahan data-app/>
         </v-tab-item>                                                     
     </v-tabs>        
     </div>
@@ -27,6 +27,7 @@
 
 <script>
     import Retur from '@/components/Retur.vue'
+    import Tambahan from '../components/Tambahan.vue'
 
     export default {
         data() {
@@ -35,7 +36,8 @@
         }
         },
         components: {
-            Retur
+            Retur,
+            Tambahan
         },
         methods: {   
 
