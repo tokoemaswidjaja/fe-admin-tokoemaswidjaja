@@ -51,7 +51,7 @@
             :key="item._id"
             >
                 <td>{{ index += 1 }}</td>
-                <td>{{ item.jumlah }}</td>
+                <td>Rp {{ getRp(item.jumlah) }}</td>
                 <td>
                     <v-icon
                         small

@@ -298,7 +298,6 @@
         }      ,         
         //  akhiri Shift
         akhiriShift(){
-            console.log(this.selisih)
                 Swal.fire({
                     title: 'Apakah anda yakin akan akhiri shift?',
                     showDenyButton: true,
