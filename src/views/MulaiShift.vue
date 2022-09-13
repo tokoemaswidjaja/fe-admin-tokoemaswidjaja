@@ -197,6 +197,7 @@
             fillBalen: 'shift/fillBalen',
             fillKasMasuk: 'shift/fillKasMasuk',  
             fillKasKeluar: 'shift/fillKasKeluar',
+            fillCabang: 'shift/fillCabang',
             fillId: 'shift/fillId'        
          }),              
          ...mapActions({
@@ -225,6 +226,7 @@
                               this.fillBalen(data[0].balen)  
                               this.fillKasMasuk(data[0].kasMasuk)
                               this.fillKasKeluar(data[0].kasKeluar) 
+                              this.fillCabang(data[0].cabang) 
                               this.fillId(data[0]._id)
                               this.mulaiShift = 'Sudah'
                               this.loading = false
@@ -262,6 +264,7 @@
                                     this.fillBalen(data.balen)  
                                     this.fillKasMasuk(data.kasMasuk)
                                     this.fillKasKeluar(data.kasKeluar) 
+                                    this.fillCabang(data.cabang)
                                     this.fillId(data._id)                                                                  
                                    this.mulaiShift = 'Sudah'
                                 })

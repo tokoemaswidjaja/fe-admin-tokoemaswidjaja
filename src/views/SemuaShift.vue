@@ -152,7 +152,10 @@
                     Kategori
                 </th>
                 <th class="text-left">
-                    Stok
+                    Laku
+                </th>
+                <th class="text-left">
+                    Stok Akhir
                 </th>
                 </tr>
             </thead>
@@ -162,7 +165,8 @@
                 :key="item.kategori"
                 >
                     <td>{{ item.kategori }}</td>
-                    <td>{{ item.stok }}</td>
+                    <td>{{ item.laku }}</td>
+                    <td>{{ item.stokAkhir }}</td>
                 </tr>
             </tbody>
             </template>

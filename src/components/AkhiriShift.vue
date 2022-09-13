@@ -79,7 +79,13 @@
                 Kategori
             </th>
             <th class="text-left">
-                Stok
+                Stok Awal
+            </th>
+            <th class="text-left">
+                Laku
+            </th>
+            <th class="text-left">
+                Stok Akhir
             </th>
             </tr>
         </thead>
@@ -89,23 +95,24 @@
             :key="item.kategori"
             >
                 <td>{{ item.kategori }}</td>
+                <td>{{ item.stokAwal }}</td>
                 <td>
                     <v-edit-dialog
-                    :return-value.sync="item.stok"
+                    :return-value.sync="item.laku"
                     large
                     persistent
                     @save="save"
                     @cancel="cancel"
-                    @open="item.stok = ''"
+                    @open="item.laku = ''"
                     @close="close"
                     >
-                    <div>{{ item.stok }}</div>
+                    <div>{{ item.laku }}</div>
                     <template v-slot:input>
                         <div class="mt-4 text-h6">
                         Update Stok
                         </div>
                         <v-text-field
-                        v-model="item.stok"
+                        v-model="item.laku"
                         :rules="[max25chars]"
                         label="Edit"
                         single-line
@@ -115,6 +122,7 @@
                     </template>
                     </v-edit-dialog>                
                 </td>
+                <td>{{ item.stokAkhir = item.stokAwal - item.laku }}</td>
             </tr>
         </tbody>
         </template>
@@ -152,6 +160,9 @@
             value: 'kategori',
           },
           { text: 'JumlahStok', value: 'stok' },
+          { text: 'JumlahStok', value: 'stok' },
+          { text: 'JumlahStok', value: 'stok' },
+
         ],
 
         // laporan
@@ -160,33 +171,34 @@
         totalBalen:'',
         saldoAkhir: '0',
         tempMinus: '',
-        stokBarang: [
-          {
-            kategori: 'K',
-            stok: '0',
-          },
-          {
-            kategori: 'L',
-            stok: '0',
-          },
-          {
-            kategori: 'G',
-            stok: '0',
-          },
-          {
-            kategori: 'C',
-            stok: '0',
-          },
-          {
-            kategori: 'T',
-            stok: '0',
-          },                              
-          {
-            kategori: 'A',
-            stok: '0',
-          },          
-          {kategori:'L-DN',stok:'0'},{kategori:'G-DN',stok:'0'},{kategori:'C-DN',stok:'0'},{kategori:'T-DN',stok:'0'},{kategori:'A-DN',stok:'0'}
-          ],
+        // stokBarang: [
+        //   {
+        //     kategori: 'K',
+        //     stok: '0',
+        //   },
+        //   {
+        //     kategori: 'L',
+        //     stok: '0',
+        //   },
+        //   {
+        //     kategori: 'G',
+        //     stok: '0',
+        //   },
+        //   {
+        //     kategori: 'C',
+        //     stok: '0',
+        //   },
+        //   {
+        //     kategori: 'T',
+        //     stok: '0',
+        //   },                              
+        //   {
+        //     kategori: 'A',
+        //     stok: '0',
+        //   },          
+        //   {kategori:'L-DN',stok:'0'},{kategori:'G-DN',stok:'0'},{kategori:'C-DN',stok:'0'},{kategori:'T-DN',stok:'0'},{kategori:'A-DN',stok:'0'}
+        //   ],
+        stokBarang: []
 
 
       }
@@ -198,6 +210,7 @@
             saldoAwal: 'shift/getSaldoAwal',
             kasKeluar: 'shift/getKasKeluar',
             kasMasuk: 'shift/getKasMasuk',
+            cabang: 'shift/getCabang',
         }),   
         saldo: function(){
             if(this.shiftId !== null){
@@ -250,7 +263,29 @@
                 return rupiah
         }
     },    
-    methods:{            
+    methods:{        
+        getAllStok(){
+            console.log(this.cabang)
+            axios({
+            url: `${this.$store.state.baseUrl}stok/cabang/${this.cabang}`,
+            method: 'get'
+            })      
+                .then(({data})=>{                      
+                   for(let i = 0 ; i < data.length ; i++){
+                        let temp = {
+                            kategori:data[i].kategori.kode,
+                            idStokBarang:data[i]._id,
+                            stokAwal:data[i].totalItem,
+                            laku:0,
+                            stokAkhir:0
+                        }
+                        this.stokBarang.push(temp)
+                   }
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        }   , 
         save () {
             this.snack = true
             this.snackColor = 'success'
@@ -297,7 +332,7 @@
             return al;
         }      ,         
         //  akhiri Shift
-        akhiriShift(){
+        akhiriShift(){       
                 Swal.fire({
                     title: 'Apakah anda yakin akan akhiri shift?',
                     showDenyButton: true,
@@ -409,6 +444,7 @@
         },                   
     },
     created(){
+            this.getAllStok()
             let tempTotalBalen = 0
             this.balen.forEach(element => {
                 tempTotalBalen += Number(element.jumlah)

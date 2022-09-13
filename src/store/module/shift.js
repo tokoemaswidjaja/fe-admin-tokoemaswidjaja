@@ -5,6 +5,7 @@ const state = {
     balen : [],
     kasMasuk: [],
     kasKeluar: [],
+    cabang: '',
     id:null
 }
 const mutations = {  
@@ -20,6 +21,9 @@ const mutations = {
     fillKasKeluar(state,payload){
         state.kasKeluar = payload
         },       
+    fillCabang(state,payload){
+        state.cabang = payload
+        },                          
     fillId(state,payload){
         state.id = payload
         },                             
@@ -38,6 +42,7 @@ const actions = {
                     context.commit('fillBalen',data[0].balen)
                     context.commit('fillKasMasuk',data[0].kasMasuk)             
                     context.commit('fillKasKeluar',data[0].kasKeluar)   
+                    context.commit('fillCabang',data[0].cabang)   
                     context.commit('fillId',data[0]._id)             
                 })
                 .catch(err=>{
@@ -57,7 +62,10 @@ const getters = {
     },  
     getKasKeluar : (state) => {
         return  state.kasKeluar
-    },            
+    },    
+    getCabang : (state) => {
+        return  state.cabang
+    },                        
     getId : (state) => {
         return  state.id
     },            
