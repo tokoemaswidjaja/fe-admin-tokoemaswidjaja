@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseUrl: "https://dev-widjaja.herokuapp.com/",
+    baseUrl: "https://toko-widjaja.herokuapp.com/",
     // baseUrl: "http://localhost:3000/",
     isLogin: false,
     user: "kasir1",
