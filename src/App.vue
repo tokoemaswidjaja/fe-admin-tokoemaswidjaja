@@ -17,12 +17,12 @@
             </v-list-item-icon>
             <v-list-item-title>Mulai Shift</v-list-item-title>
           </v-list-item>
-          <v-list-item link @click="$router.push('/shift')">
+          <!-- <v-list-item link @click="$router.push('/shift')">
             <v-list-item-icon>
               <v-icon>mdi-cash-register</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Semua Shift</v-list-item-title>
-          </v-list-item>
+          </v-list-item> -->
           <v-list-item link @click="$router.push('/stok')">
             <v-list-item-icon>
               <v-icon>mdi-cart</v-icon>

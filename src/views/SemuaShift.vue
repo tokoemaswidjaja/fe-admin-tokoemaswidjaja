@@ -78,7 +78,7 @@
                 Cari
                 </v-btn>  
             </v-col>        
-        </v-row>            
+        </v-row>      
 
         <v-data-table
             :headers="headers1"
@@ -269,7 +269,7 @@
 
     },
     computed:{
-             
+                
     },    
     methods: {   
         fetchAllShift(){
