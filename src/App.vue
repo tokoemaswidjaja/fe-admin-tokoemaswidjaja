@@ -15,7 +15,7 @@
             <v-list-item-icon>
               <v-icon>mdi-form-select</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Mulai Shift</v-list-item-title>
+            <v-list-item-title>Mulai Shift Tesss</v-list-item-title>
           </v-list-item>
           <!-- <v-list-item link @click="$router.push('/shift')">
             <v-list-item-icon>
